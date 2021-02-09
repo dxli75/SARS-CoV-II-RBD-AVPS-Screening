@@ -1,0 +1,34 @@
+;       Energy minimizing stuff
+
+; Define can be used to control processes
+;define          = -DFLEXIBLE    ; -DPOSRES
+;define          = -DPOSRES
+
+; Parameters describing what to do, when to stop and what to save
+integrator	    = steep		; Algorithm (steep = steepest descent minimization)
+emtol		        = 100.0		; Stop minimization when the maximum force < 1.0 kJ/mol
+emstep          = 0.01         
+dt              = 0.001   ; ps 
+nsteps		      = 10000  	; Maximum number of (minimization) steps to perform
+nstenergy	      = 1		    ; Write energies to disk every nstenergy steps
+energygrps	    = System	; Which energy group(s) to write to disk
+
+; Parameters describing how to find the neighbors of each atom and how to calculate the interactions
+rlist           = 1.5           ; Cut-off for making neighbor list (short range forces)
+nstlist         = 1             ; Frequency to update the neighbor list
+cutoff-scheme   = Verlet
+coulombtype	    = PME		; Treatment of long range electrostatic interactions
+rcoulomb	      = 1.5		; long range electrostatic cut-off
+vdwtype         = cut-off
+rvdw		        = 1.5		; long range Van der Waals cut-off
+constraints	    = none		; Bond types to replace by constraints
+
+; Parameters describing how to do FFT
+pbc		          = xyz		; Periodic Boundary Conditions (yes/no)
+fourierspacing  = 0.24
+fourier_nx      = 0
+fourier_ny      = 0
+fourier_nz      = 0
+pme_order       = 6
+ewald_rtol      = 1e-5
+
